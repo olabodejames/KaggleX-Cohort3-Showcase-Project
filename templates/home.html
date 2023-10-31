@@ -9,8 +9,8 @@
     <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-    <!-- Link to the CSS file -->
-    <link href="flask-app\Showcase-project\templates\stylesheet.css" rel="stylesheet" />
+    <!-- Link to the CSS file -->    
+    <link rel="stylesheet" href="{{ url_for('static', filename= style.css') }}">
   </head>
 </head>
 <body>
@@ -57,7 +57,7 @@
 	</div>
 	</div>
 	<!-- Link to the JavaScript file -->
-    <script src="flask-app\Showcase-project\templates\stylesheet.css"></script>
+    <script src="{{ url_for('static', filename= script.js') }}></script>
     <script type="text/javascript">
         function buildTable(data) {
             const table = document.getElementById('myTable')
