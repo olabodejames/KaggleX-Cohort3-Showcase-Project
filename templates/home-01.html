@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>News Sentiment Analysis</title>
+</head>
+<body>
+    <h1>News Sentiment Analysis</h1>
+    <p>This web app aggregates news articles from a given URL and sorts them by different sentiments.</p>
+    <table border="1">
+        <tr>
+            <th>Title</th>
+            <th>URL</th>
+            <th>Sentiment</th>
+        </tr>
+        {% for row in df.itertuples() %}
+        <tr>
+            <td>{{ row.Title }}</td>
+            <td><a href="{{ row.URL }}" target="_blank">{{ row.URL }}</a></td>
+            <td>{{ row.Sentiment }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

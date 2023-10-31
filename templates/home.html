@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Improving News Consumption</title>
+
+    <meta charset="UTF-8">
+    <title>ML API</title>
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <!-- Link to the CSS file -->
+    <link href="../css/style.css" rel="stylesheet" />
+  </head>
+</head>
+<body>
+     
+    <div>
+	<h1>News Aggregation, Sorting and Tranformation</h1>
+    <p>Harnessing the power of machine learning to analyze and categorize online content based on its emotional tone, identify and control exposure to emotionally charged online content, and in some cases, transform it into a more positive or neutral form.</p></div>
+     <div><label for="sentiment">Sentiments</label>
+        <form class="form">
+            <div class="form__group">
+                <select id="sentiment" name="sentiment" data-dropdown>
+                    <option value="">Please select a sentiment</option>
+                    <option value="very-positive">Uplifting or Great</option>
+                    <option value="positive">Good</option>
+                    <option value="neutral">Neutral</option>
+                    <option value="negative">Sad</option>
+                    <option value="very-negative">Depressing or Sad</option>
+                </select>
+            </div>
+        </form>
+    
+    <div><table class="table">
+        <tr>
+            <th>Title</th>
+            <th>URL</th>
+            <th>Content Sentiment</th>
+            <th>Classification</th>
+            <th>Transform</th>
+        </tr>
+		{% for row in df.itertuples() %}
+        <tr>
+            <td>{{ row.Title }}</td>
+            <td><a href="{{ row.URL }}" target="_blank">Read Article</a></td>
+            <td>{{ row.Sentiment }}</td>
+            <td>{{ row.Classification }}</td>
+			<td><a href="{{ row.URL }}" target="_blank">Transform</a></td>
+        </tr>
+        {% endfor %}
+    </table></div>
+	
+	<div class="pagination">
+		<button id="prev">Previous</button>
+		<button id="next">Next</button>
+	</div>
+	</div>
+	<!-- Link to the JavaScript file -->
+    <script src="../js/script.js"></script>
+    <script type="text/javascript">
+        function buildTable(data) {
+            const table = document.getElementById('myTable')
+            table.innerHTML = data.map(row => {
+                let [title, url, sentiment, classified] = row;
+                return `<tr>
+                    <td>${title}</td>
+                    <td><a href="${url}" target="_blank">Read Article</a></td>
+                    <td>${sentiment}</td>
+                    <td>${classified}</td>
+                    <td><a href="${url}" target="_blank">Transform</a></td>
+                </tr>`;
+            }).join('');
+        }
+        const data = {df};
+        const sentimentSelector = document.getElementById('sentiment');
+        sentimentSelector.addEventListener('change', evt => {
+            const value = evt.target.value;
+            if (value) {
+                buildTable(data.filter(row => {
+                    let [title, url, sentiment, classified] = row;
+                    if (value > 0.6) {
+                        return 'very-positive';
+                    } else if (value > 0.2 && value <= 0.6) {
+                        return 'positive';
+                    } else if (value >= -0.2 && value <= 0.2) {
+                        return 'neutral';
+                    } else if (value > -0.2 && value <= -0.6) {
+                        return 'negative';
+                    } else if (value < -0.6) {
+                        return 'very-negative';
+                    }
+                }));
+            } else {
+                buildTable(data);
+            }
+        });
+        buildTable(data)
+    </script>
+</body>
+</html>

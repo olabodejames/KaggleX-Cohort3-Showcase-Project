@@ -1,0 +1,65 @@
+/* Style the table */
+#myTable {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  border: 3px solid purple;
+}
+
+/* Style the table header */
+#myTable thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+}
+
+/* Style the table cells */
+#myTable th, #myTable td {
+  padding: 12px 15px;
+}
+
+/* Style the table body */
+#myTable tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+/* Style every other row */
+#myTable tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+/* Style the last row */
+#myTable tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+
+/* Style the pagination container */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Style the pagination buttons */
+.pagination button {
+  color: #009879;
+  background-color: #ffffff;
+  border: 1px solid #009879;
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+/* Style the pagination buttons on hover */
+.pagination button:hover {
+  background-color: #009879;
+  color: #ffffff;
+}
+
+/* Style the disabled pagination buttons */
+.pagination button:disabled {
+  background-color: #dddddd;
+  color: #999999;
+  border: 1px solid #dddddd;
+  cursor: not-allowed;
+}
