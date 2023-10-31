@@ -71,7 +71,7 @@ for article in articles:
 
 # Convert the DataFrame to a CSV file
 result = result = pd.DataFrame(resultList, columns=['Title', 'Author', 'Publish Date', 'sentiment','Classification','Content', 'url'])
-result.to_csv('news_data_4.csv', index=False)
+result.to_csv('news_data_5.csv', index=False)
 
 # Create a pandas data frame from the data list# Create a pandas DataFrame from specific columns of the result DataFrame
 df = pd.DataFrame({
